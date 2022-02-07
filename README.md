@@ -78,7 +78,10 @@ ACCOUNT_PRIVATE_KEY= <錢包地址>
  * mint ```function mint_presale(uint8 NUM_TOKENS_MINT), function mint_public(uint8 NUM_TOKENS_MINT)```
 
  ## Why ERC721A
- * 節省mint gas fee
+ * 節省mint gas fee，特別是針對批次mint
+ * 優化 1 - Removing duplicate storage from OpenZeppelin’s (OZ) ERC721Enumerable
+ * 優化 2 - updating the owner’s balance once per batch mint request, instead of per minted NFT 
+ * 優化 3 - updating the owner data once per batch mint request, instead of per minted NFT
 
 ## How to stake
 * fisrtly, approve NFT to "TestStaking" contract
