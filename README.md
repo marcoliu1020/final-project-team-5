@@ -74,8 +74,8 @@ ACCOUNT_PRIVATE_KEY= <錢包地址>
     
  ## How to mint (Rookies.sol)
  * add to whitelist ```function addToAllowList(address[] calldata addresses)```
- * check mint status (_isPreSaleActive, _isPublicSaleActive)
- * mint (call function mint_presale(uint8 NUM_TOKENS_MINT), function mint_public(uint8 NUM_TOKENS_MINT)) 
+ * check mint status ```_isPreSaleActive, _isPublicSaleActive```
+ * mint ```function mint_presale(uint8 NUM_TOKENS_MINT), function mint_public(uint8 NUM_TOKENS_MINT)```
 
  ## Why ERC721A
  * 節省mint gas fee
