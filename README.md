@@ -82,6 +82,7 @@ ACCOUNT_PRIVATE_KEY= <錢包地址>
  * 優化 1 - Removing duplicate storage from OpenZeppelin’s (OZ) ERC721Enumerable
  * 優化 2 - updating the owner’s balance once per batch mint request, instead of per minted NFT 
  * 優化 3 - updating the owner data once per batch mint request, instead of per minted NFT
+ * 實作參考資料https://www.azuki.com/erc721a?fbclid=IwAR0bYh7Ehls9hilQxVLl6h4AbqQNWng0N2o6UdOCpi4BRjm9609bGTKafqY
 
 ## How to stake
 * fisrtly, approve NFT to "TestStaking" contract
