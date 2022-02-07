@@ -76,7 +76,7 @@ ACCOUNT_PRIVATE_KEY= <錢包地址>
  * add to whitelist ```function addToAllowList(address[] calldata addresses)```
  * check mint status ```_isPreSaleActive, _isPublicSaleActive```
  * mint ```function mint_presale(uint8 NUM_TOKENS_MINT), function mint_public(uint8 NUM_TOKENS_MINT)```
- * Etherscan合約地址[Rookies.sol](https://rinkeby.etherscan.io/address/0x01d5b5044c5c6a97e071c5753fb7b6d40949cc06)
+ * Etherscan合約地址[Rookies.sol](https://rinkeby.etherscan.io/address/0x01d5b5044c5c6a97e071c5753fb7b6d40949cc06#code)
 
  ## Why ERC721A
  * 節省mint gas fee，特別是針對批次mint
