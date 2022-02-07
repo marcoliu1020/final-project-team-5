@@ -79,7 +79,6 @@ ACCOUNT_PRIVATE_KEY= <錢包地址>
 
  ## Why ERC721A
  * 節省mint gas fee
- * HOW
 
 ## how to stake
 * fisrtly, approve NFT to "TestStaking" contract
