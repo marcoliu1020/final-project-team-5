@@ -71,7 +71,14 @@ ACCOUNT_PRIVATE_KEY= <錢包地址>
     # start vite
     yarn start or npm run start
     ```
-    
+
+## how to stake
+* fisrtly, approve NFT to "TestStaking" contract
+* secondly, stake NFT, then "TestStaking" contract will be the owner of this NFT
+* thirdly, reward points increase automaticly
+* finally, unstake NFT, NFT will be return to staker, and get reward
+
+
 ## License
 
 MIT License
