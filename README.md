@@ -80,7 +80,7 @@ ACCOUNT_PRIVATE_KEY= <錢包地址>
  ## Why ERC721A
  * 節省mint gas fee
 
-## how to stake
+## How to stake
 * fisrtly, approve NFT to "TestStaking" contract
 * secondly, stake NFT, then "TestStaking" contract will be the owner of this NFT
 * thirdly, reward points increase automaticly
