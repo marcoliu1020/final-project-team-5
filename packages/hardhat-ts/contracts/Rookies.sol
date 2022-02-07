@@ -10,6 +10,7 @@ contract Rookies is ERC721A, Ownable {
   using SafeMath for uint256;
   using Strings for uint256;
 
+  // Check sale status
   bool private _isPreSaleActive = false;
   bool private _isPublicSaleActive = false;
 
@@ -21,6 +22,7 @@ contract Rookies is ERC721A, Ownable {
   string private _baseTokenURI;
   string private _preRevealURI;
 
+  // Shareholders' address
   address private s1 = 0x00380A88f081020Ae09ab8d19b0c554dB499b66D;
   address private s2 = 0x00380A88f081020Ae09ab8d19b0c554dB499b66D;
   address private s3 = 0x00380A88f081020Ae09ab8d19b0c554dB499b66D;
@@ -28,6 +30,7 @@ contract Rookies is ERC721A, Ownable {
   address private s5 = 0x00380A88f081020Ae09ab8d19b0c554dB499b66D;
   address private s6 = 0x00380A88f081020Ae09ab8d19b0c554dB499b66D;
 
+  // White List
   mapping(address => bool) private _allowList;
 
   modifier onlyShareHolders() {
@@ -48,6 +51,7 @@ contract Rookies is ERC721A, Ownable {
 
   constructor() ERC721A('Rookies', 'ROKY') {}
 
+  // Add to white list
   function addToAllowList(address[] calldata addresses) external onlyOwner {
     for (uint256 i = 0; i < addresses.length; i++) {
       require(addresses[i] != address(0), "Can't add the null address");
@@ -55,6 +59,7 @@ contract Rookies is ERC721A, Ownable {
     }
   }
 
+  // Remove from white list
   function removeFromAllowList(address[] calldata addresses) external onlyOwner {
     for (uint256 i = 0; i < addresses.length; i++) {
       require(addresses[i] != address(0), "Can't add the null address");
@@ -94,11 +99,6 @@ contract Rookies is ERC721A, Ownable {
     return _isPublicSaleActive;
   }
 
-  function _mint(address recipient, uint256 quantity) internal {
-    // _safeMint's second argument now takes in a quantity, not a tokenId.
-    _safeMint(recipient, quantity);
-  }
-
   function mint_presale(uint8 NUM_TOKENS_MINT) public payable onlyRealUser {
     require(_isPreSaleActive, 'Sales is not active');
     require(totalSupply().add(NUM_TOKENS_MINT) <= 900, 'Exceeding max supply');
@@ -121,6 +121,11 @@ contract Rookies is ERC721A, Ownable {
 
     _mint(msg.sender, NUM_TOKENS_MINT);
     emit TokenMinted(totalSupply());
+  }
+
+  function _mint(address recipient, uint256 quantity) internal {
+    // _safeMint's second argument now takes in a quantity, not a tokenId.
+    _safeMint(recipient, quantity);
   }
 
   function reserve(uint256 num) public onlyOwner {
