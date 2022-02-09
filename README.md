@@ -1,5 +1,6 @@
 # KrytpoCamp 期末專案
 
+![](preview.png)
 
 ---
 
