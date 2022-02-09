@@ -2,6 +2,9 @@
 
 ![](preview.png)
 
+![](preview.gif)
+
+
 * [Opensea Official Website](https://testnets.opensea.io/collection/rookiesnftcollection)
 ---
 
