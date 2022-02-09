@@ -26,6 +26,7 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
   const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
 
+  console.log('props.scaffoldAppProviders', props.scaffoldAppProviders);
   /**
    * this shows the page header and other informaiton
    */

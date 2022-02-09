@@ -1,7 +1,7 @@
 import * as hardhatContracts from '~~/generated/contract-types';
 import { externalContractsAddressMap } from './externalContractsConfig';
 import * as externalContracts from '~~/generated/external-contracts/esm/types';
-import hardhatContractsJson from '../generated/hardhat_contracts.json';
+// import hardhatContractsJson from '../generated/hardhat_contracts.json';
 import {
   createConnectorForExternalAbi,
   createConnectorForExternalContract,
