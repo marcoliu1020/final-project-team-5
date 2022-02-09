@@ -1,6 +1,5 @@
 # KrytpoCamp 期末專案
 
-![](https://drive.google.com/file/d/19NpAJb2_82nU5lJwsCW2LrjzjGDJym0q/view?usp=sharing)
 
 ---
 
