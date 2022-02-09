@@ -1,4 +1,4 @@
-# KrytpoCamp 期末專案 Rookies NFT Collection
+# KrytpoCamp 期末專案 Rookies NFT Collections
 
 ![](preview.png)
 
