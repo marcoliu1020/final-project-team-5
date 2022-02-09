@@ -2,6 +2,7 @@
 
 ![](preview.png)
 
+[Opensea Official Website](https://testnets.opensea.io/collection/rookiesnftcollection)
 ---
 
 ## 四份合約
