@@ -4,23 +4,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '~~/styles/main-page.css';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useGasPrice } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
-
-import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Hints, Subgraph, ExampleUI } from '~~/components/pages';
-
-import { useEventListener } from 'eth-hooks';
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
+import { MainPageMenu, MainPage, MainPageHeader, MintPage, StakingPage } from './components/main';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 import { useEthersContext } from 'eth-hooks/context';
 import { NETWORKS } from '~~/models/constants/networks';
-import {
-  useAppContracts,
-  useAppContractsActions,
-  useConnectAppContracts,
-  useLoadAppContracts,
-} from '~~/config/contractContext';
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~~/config/contractContext';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import { const_UseBurnerWalletAsFallback, MAINNET_PROVIDER } from '~~/config/appConfig';
 
@@ -75,29 +65,11 @@ export const Main: FC = () => {
   // These are the contracts!
   // -----------------------------
 
-  // init contracts
-  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
-  const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
-
-  // keep track of a variable from the contract in the local React state:
-  const [purpose, update] = useContractReader(
-    yourContract,
-    yourContract?.purpose,
-    [],
-    yourContract?.filters.SetPurpose()
-  );
-
-  // 📟 Listen for broadcast events
-  const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
-
   // -----------------------------
   // .... 🎇 End of examples
   // -----------------------------
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
   const [ethPrice] = useDexEthPrice(scaffoldAppProviders.mainnetAdaptor?.provider, scaffoldAppProviders.targetNetwork);
-
-  // 💰 this hook will get your balance
-  const [yourCurrentBalance] = useBalance(ethersContext.account);
 
   const [route, setRoute] = useState<string>('');
   useEffect(() => {
@@ -113,44 +85,17 @@ export const Main: FC = () => {
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
           <Route exact path="/">
-            <MainPageContracts scaffoldAppProviders={scaffoldAppProviders} />
+            <MainPage scaffoldAppProviders={scaffoldAppProviders} />
           </Route>
           {/* you can add routes here like the below examlples */}
-          <Route path="/hints">
-            <Hints
-              address={ethersContext?.account ?? ''}
-              yourCurrentBalance={yourCurrentBalance}
-              mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider}
-              price={ethPrice}
-            />
+          <Route path="/mint">
+            <MintPage />
           </Route>
-          <Route path="/exampleui">
-            <ExampleUI
-              mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider}
-              yourCurrentBalance={yourCurrentBalance}
-              price={ethPrice}
-            />
+          <Route path="/staking">
+            <StakingPage />
           </Route>
-          <Route path="/mainnetdai">
-            {MAINNET_PROVIDER != null && (
-              <GenericContract
-                contractName="DAI"
-                contract={mainnetDai}
-                mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-                blockExplorer={NETWORKS.mainnet.blockExplorer}
-              />
-            )}
-          </Route>
-          {/* Subgraph also disabled in MainPageMenu, it does not work, see github issue! */}
-          {/* 
-          <Route path="/subgraph">
-            <Subgraph subgraphUri={subgraphUri} mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider} />
-          </Route> 
-          */}
         </Switch>
       </BrowserRouter>
-
-      <MainPageFooter scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
     </div>
   );
 };

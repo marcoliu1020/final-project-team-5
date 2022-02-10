@@ -5,7 +5,7 @@ import { lazier } from 'eth-hooks/helpers';
 /**
  * lazy/lazier loaded component
  */
-export const MainPageContracts = lazier(() => import('./MainPageContracts'), 'MainPageContracts');
+export const MainPage = lazier(() => import('./MainPage'), 'MainPage');
 /**
  * lazy/lazier loaded component
  */
@@ -18,3 +18,7 @@ export const MainPageHeader = lazier(() => import('./MainPageHeader'), 'MainPage
  * lazy/lazier loaded component
  */
 export const MainPageMenu = lazier(() => import('./MainPageMenu'), 'MainPageMenu');
+
+export const MintPage = lazier(() => import('./MintPage'), 'MintPage');
+
+export const StakingPage = lazier(() => import('./StakingPage'), 'StakingPage');

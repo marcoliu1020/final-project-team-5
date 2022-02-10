@@ -27,7 +27,7 @@ import { create } from 'ipfs-http-client';
 /**
  * Set your target network!!!
  */
-const TARGET_NETWORK = 'localhost';
+const TARGET_NETWORK = 'rinkeby';
 
 const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
@@ -35,17 +35,21 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 
 const mnemonicPath = './generated/mnemonic.secret';
-const getMnemonic = () => {
-  try {
-    return fs.readFileSync(mnemonicPath).toString().trim();
-  } catch (e) {
-    // @ts-ignore
-    if (TARGET_NETWORK !== 'localhost') {
-      console.log('☢️ WARNING: No mnemonic file created for a deploy account. Try `yarn run generate` and then `yarn run account`.');
-    }
-  }
-  return '';
-};
+// const getMnemonic = () => {
+//   try {
+//     return fs.readFileSync(mnemonicPath).toString().trim();
+//   } catch (e) {
+//     // @ts-ignore
+//     if (TARGET_NETWORK !== 'localhost') {
+//       console.log('☢️ WARNING: No mnemonic file created for a deploy account. Try `yarn run generate` and then `yarn run account`.');
+//     }
+//   }
+//   return '';
+// };
+
+const INFURA_ID = '6db9ec37c5864e7298d324509974dc22'
+const ACCOUNT_PRIVATE_KEY = '6f11254acee834edc408324890e2b2c1c1086d87e373a35ab00a6f74bb1f6736'
+
 
 const config: HardhatUserConfig = {
   defaultNetwork: TARGET_NETWORK,
@@ -71,48 +75,34 @@ const config: HardhatUserConfig = {
       // },
     },
     rinkeby: {
-      url: 'https://rinkeby.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
+      url: `https://rinkeby.infura.io/v3/${INFURA_ID}`, // <---- YOUR INFURA ID! (or it won't work)
+      accounts: [ACCOUNT_PRIVATE_KEY],
     },
     kovan: {
-      url: 'https://kovan.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
+      url: `https://kovan.infura.io/v3/${INFURA_ID}`, // <---- YOUR INFURA ID! (or it won't work)
+      accounts: [ACCOUNT_PRIVATE_KEY],
     },
     mainnet: {
-      url: 'https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
+      url: `https://mainnet.infura.io/v3/${INFURA_ID}`, // <---- YOUR INFURA ID! (or it won't work)
+      accounts: [ACCOUNT_PRIVATE_KEY],
     },
     ropsten: {
-      url: 'https://ropsten.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
+      url: `https://ropsten.infura.io/v3/${INFURA_ID}`, // <---- YOUR INFURA ID! (or it won't work)
+      accounts: [ACCOUNT_PRIVATE_KEY],
     },
     goerli: {
-      url: 'https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
+      url: `https://goerli.infura.io/v3/${INFURA_ID}`, // <---- YOUR INFURA ID! (or it won't work)
+      accounts: [ACCOUNT_PRIVATE_KEY],
     },
     xdai: {
-      url: 'https://rpc.xdaichain.com/',
+      url: `https://rpc.xdaichain.com/`,
       gasPrice: 1000000000,
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
+      accounts: [ACCOUNT_PRIVATE_KEY],
     },
     matic: {
-      url: 'https://rpc-mainnet.maticvigil.com/',
+      url: `https://rpc-mainnet.maticvigil.com/`,
       gasPrice: 1000000000,
-      accounts: {
-        mnemonic: getMnemonic(),
-      },
+      accounts: [ACCOUNT_PRIVATE_KEY],
     },
   },
   solidity: {

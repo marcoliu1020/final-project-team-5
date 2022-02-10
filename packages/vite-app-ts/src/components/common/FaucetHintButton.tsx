@@ -21,7 +21,7 @@ export const getFaucetAvailable = (scaffoldAppProviders: IScaffoldAppProviders, 
     (const_FaucetEnabled &&
       ethersContext?.provider &&
       ethersContext?.chainId === scaffoldAppProviders.targetNetwork.chainId &&
-      scaffoldAppProviders.targetNetwork.name === 'localhost') ??
+      scaffoldAppProviders.targetNetwork.name === 'rinkeby') ??
     false
   );
 };

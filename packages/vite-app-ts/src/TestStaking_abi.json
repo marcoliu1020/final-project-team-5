@@ -1,0 +1,18 @@
+[
+  "constructor(address _ftAddress, address _nftAddress)",
+  "event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)",
+  "function ftAddress() view returns (address)",
+  "function getUserInfo(address _staker) view returns (uint256[] nftStakeIds, uint256 nftAmount, uint256 rewardAmount)",
+  "function nftAddress() view returns (address)",
+  "function nftCount() view returns (uint256)",
+  "function nftInfo(uint256) view returns (address nftAddress, uint256 id, address staker, uint256 stakeAt)",
+  "function owner() view returns (address)",
+  "function renounceOwnership()",
+  "function setStakeRate(uint256 _rate)",
+  "function stakeNFT(uint256 _id)",
+  "function stakeRate() view returns (uint256)",
+  "function stakingReward(address userAddress) view returns (uint256)",
+  "function transferOwnership(address newOwner)",
+  "function unstakeNFT(uint256 _index)",
+  "function withdraw(uint256 _amount)"
+]

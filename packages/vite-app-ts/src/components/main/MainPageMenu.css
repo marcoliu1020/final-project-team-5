@@ -1,0 +1,21 @@
+.page-menu .ant-menu-overflow.ant-menu.ant-menu-root.ant-menu-horizontal.ant-menu-light {
+  color: #fff;
+  border: none;
+  background-position: 0 100%;
+  background-size: auto 200%;
+  background-image: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  margin-right: 20px;
+}
+
+.page-menu--logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  padding-bottom: 2px;
+}
+
+.page-menu .ant-menu-title-content > a:hover::after {
+  width: 100%;
+  color: #ffc904;
+  background-color: rgba(0, 0, 0, 0.2);
+}

@@ -8,6 +8,8 @@ import { useEthersContext } from 'eth-hooks/context';
 import { useGasPrice } from 'eth-hooks';
 import { getNetworkInfo } from '~~/functions';
 
+import './MainPageHeader.css';
+
 // displays a page header
 export interface IMainPageHeaderProps {
   scaffoldAppProviders: IScaffoldAppProviders;
@@ -26,46 +28,20 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
   const [gasPrice] = useGasPrice(ethersContext.chainId, 'fast', getNetworkInfo(ethersContext.chainId));
 
-  console.log('props.scaffoldAppProviders', props.scaffoldAppProviders);
-  /**
-   * this shows the page header and other informaiton
-   */
-  const left = (
-    <>
-      <div>
-        <PageHeader
-          title="🏰 BuidlGuidl"
-          subTitle={
-            <span>
-              v2.1 - [
-              <a href="https://youtu.be/aYMj00JoIug" target="_blank" rel="noreferrer">
-                <span style={{ marginRight: 4 }}>🎥 </span> 8min speed run
-              </a>
-              ] - [
-              <a href="https://trello.com/b/ppbUs796/buidlguidlcom-idea-board" target="_blank" rel="noreferrer">
-                <span style={{ marginRight: 4 }}>💡 </span> trello
-              </a>
-              ]{' '}
-            </span>
-          }
-          style={{ cursor: 'pointer' }}
-        />
-      </div>
-      {props.children}
-    </>
-  );
-
   /**
    * 👨‍💼 Your account is in the top right with a wallet at connect options
    */
   const right = (
-    <div style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10, zIndex: 1 }}>
+    <div
+      className="header-right"
+      style={{ position: 'fixed', textAlign: 'right', right: 0, top: 0, padding: 10, zIndex: 1 }}>
       <Account
         createLoginConnector={props.scaffoldAppProviders.createLoginConnector}
         ensProvider={props.scaffoldAppProviders.mainnetAdaptor?.provider}
         price={props.price}
         blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
         hasContextConnect={true}
+        fontSize={24}
       />
       <FaucetHintButton scaffoldAppProviders={props.scaffoldAppProviders} gasPrice={gasPrice} />
       {props.children}
@@ -103,11 +79,5 @@ export const MainPageHeader: FC<IMainPageHeaderProps> = (props) => {
     );
   }
 
-  return (
-    <>
-      {left}
-      {networkDisplay}
-      {right}
-    </>
-  );
+  return <>{right}</>;
 };
