@@ -90,10 +90,17 @@ ACCOUNT_PRIVATE_KEY= <錢包地址>
  * 實作參考資料[Azuki ERC721A](https://www.azuki.com/erc721a?fbclid=IwAR0bYh7Ehls9hilQxVLl6h4AbqQNWng0N2o6UdOCpi4BRjm9609bGTKafqY)
 
 ## How to stake
-* fisrtly, approve NFT to "TestStaking" contract
-* secondly, stake NFT, then "TestStaking" contract will be the owner of this NFT
-* thirdly, reward points increase automaticly
-* finally, unstake NFT, NFT will be return to staker, and get reward
+* 授權 [NFT](https://rinkeby.etherscan.io/address/0x01d5b5044c5c6a97e071c5753fb7b6d40949cc06#code) 到 [質押合約](https://rinkeby.etherscan.io/address/0xFFfc5bf19730036E42703d408D2a747de1a830e3#code)
+  * 到 ```NFT``` 合約 **執行** ```function approve(<質押合約 地址>, tokenId)```
+* 質押 [NFT](https://rinkeby.etherscan.io/address/0x01d5b5044c5c6a97e071c5753fb7b6d40949cc06#code) 到 [質押合約](https://rinkeby.etherscan.io/address/0xFFfc5bf19730036E42703d408D2a747de1a830e3#code)
+  * 到 ```質押``` 合約 **執行** ```function stakeNFT(_tokenID)```
+* 查看獎勵 
+  * 到 ```質押``` 合約 **執行** ```getStakingReward(<錢包 地址>)```
+* 查看使用者
+  * 到 ```質押``` 合約 **執行** ```function getUser(<錢包 地址>)```
+* 贖回 NFT 
+  * 到 ```質押``` 合約 **執行** ```function unstakeNFT(_stakeID)```
+  * **查看使用者** 就可以看到 **_stakeID**
 
 
 ## License
