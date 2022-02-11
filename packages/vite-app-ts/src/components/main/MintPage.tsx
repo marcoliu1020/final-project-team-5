@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { parseEther } from '@ethersproject/units';
 import { ethers } from 'ethers';
@@ -176,6 +176,23 @@ const StyleBanner = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  .supply-amount {
+    padding: 0 10px;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    margin-top: -80px;
+    color: #fff;
+    font-family: 'Indie Flower', cursive;
+    font-size: 40px;
+    .amount-text {
+      color: #fbc02d;
+      font-size: bold;
+      font-size: 24px;
+    }
+  }
 `;
 
 const StyleMintOk = styled.button`
@@ -194,18 +211,27 @@ const StyleMintOk = styled.button`
 export function MintPage() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [mintAmount, updateMintAmount] = useState(1);
+  const [maxSupply, setMaxSupply] = useState('0');
+  const [totalSupply, setTotalSupply] = useState('0');
+
+  const { ethereum } = window;
+  const provider = new ethers.providers.Web3Provider(ethereum as any);
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract('0x01d5b5044c5c6a97e071c5753fb7b6d40949cc06', NFT.abi, signer);
+
+  useEffect(() => {
+    const getApplyAmount = async () => {
+      setMaxSupply(ethers.utils.formatUnits(await contract.MAX_SUPPLY(), 0));
+      setTotalSupply(ethers.utils.formatUnits(await contract.totalSupply(), 0));
+    };
+    getApplyAmount();
+  }, []);
 
   const handleMint = useCallback(async () => {
-    const { ethereum } = window;
-
     if (!ethereum) {
       alert('Please install MetaMask!');
       return;
     }
-
-    const provider = new ethers.providers.Web3Provider(ethereum as any);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract('0x01d5b5044c5c6a97e071c5753fb7b6d40949cc06', NFT.abi, signer);
     // let contract = new ethers.Contract('0x01d5b5044c5c6a97e071c5753fb7b6d40949cc06', NFT, signer);
     console.log('contract', contract);
     try {
@@ -228,6 +254,13 @@ export function MintPage() {
     <StyleBanner>
       <h2 style={{ fontSize: '24px' }}>Mint Your First Rookie</h2>
       <StyleMintButton onClick={openModal}>Mint Egg</StyleMintButton>
+      <div className="supply-amount">
+        <span className="amount-text">MINTED: </span>
+        <span>{parseInt(maxSupply) - parseInt(totalSupply)}</span>
+        <span className="amount-text"> / </span>
+        <span className="amount-text">TOTAL: </span>
+        <span>{maxSupply}</span>
+      </div>
       <Modal visible={isModalVisible} onCancel={cancelModal} footer={null}>
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <span>Amount：</span>

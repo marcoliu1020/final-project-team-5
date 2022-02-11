@@ -18,7 +18,7 @@ export interface IMainPageProps {
  * @param props 
  * @returns 
  */
-export const MainPage: FC<IMainPageProps> = (props) => {
+export const HOMEPage: FC<IMainPageProps> = (props) => {
   const ethersContext = useEthersContext();
 
   const handleStaking = useCallback(async () => {
@@ -36,10 +36,6 @@ export const MainPage: FC<IMainPageProps> = (props) => {
     console.log('contract', contract);
     await contract.stakeNFT(2);
   }, []);
-
-  if (ethersContext.account == null) {
-    return <></>;
-  }
 
   const StyleBanner = styled.div`
     position: relative;

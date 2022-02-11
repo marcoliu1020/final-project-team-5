@@ -1,10 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, memo } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import '~~/styles/main-page.css';
 import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useGasPrice } from 'eth-hooks';
 import { useDexEthPrice } from 'eth-hooks/dapps';
-import { MainPageMenu, MainPage, MainPageHeader, MintPage, StakingPage } from './components/main';
+import { MainPageMenu, HOMEPage, MainPageHeader, MintPage, StakingPage } from './components/main';
 import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
 import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
@@ -28,7 +28,7 @@ import { const_UseBurnerWalletAsFallback, MAINNET_PROVIDER } from '~~/config/app
  * The main component
  * @returns
  */
-export const Main: FC = () => {
+export const Main: FC = memo(() => {
   // -----------------------------
   // Providers, signers & wallets
   // -----------------------------
@@ -85,7 +85,7 @@ export const Main: FC = () => {
         <MainPageMenu route={route} setRoute={setRoute} />
         <Switch>
           <Route exact path="/">
-            <MainPage scaffoldAppProviders={scaffoldAppProviders} />
+            <HOMEPage scaffoldAppProviders={scaffoldAppProviders} />
           </Route>
           {/* you can add routes here like the below examlples */}
           <Route path="/mint">
@@ -98,4 +98,4 @@ export const Main: FC = () => {
       </BrowserRouter>
     </div>
   );
-};
+});
